@@ -17,6 +17,6 @@ model Livro {
   id Int @id @default(autoincrement())
   Titulo String
   Autor String
-  AnoPub Int
+  AnoPublicacao Int
   Genero String
 }
