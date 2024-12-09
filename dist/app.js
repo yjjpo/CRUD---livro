@@ -9,9 +9,6 @@ const app = (0, express_1.default)();
 const PORT = 3000;
 app.use(express_1.default.json());
 app.use('/api', livroRoutes_1.default);
-app.get('/', (req, res) => {
-    res.send('Servidor rodando!');
-});
 app.listen(PORT, () => {
     console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
