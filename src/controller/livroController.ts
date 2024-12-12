@@ -32,7 +32,7 @@ export const createLivro = async (req: Request, res: Response) => {
     const novoLivro = await prisma.livro.create({
       data: { Titulo, Autor, AnoPubli, Genero },
     });
-    res.status(201).json(novoLivro);
+    res.status(201).json(novoLivro)
   } catch (error) {
     res.status(500).json({ error: 'Erro ao criar o livro' });
   }
