@@ -9,15 +9,12 @@ const livroRoutes_1 = __importDefault(require("./routers/livroRoutes"));
 const client_1 = require("@prisma/client");
 dotenv_1.default.config();
 const app = (0, express_1.default)();
-const PORTA = 4000;
+const PORTA = 5555;
 const prisma = new client_1.PrismaClient();
-// Middleware
 app.use(express_1.default.json());
-// Root route
 app.get('/', (req, res) => {
-    res.send('Teste');
+    res.send('Oie');
 });
-// Mounting the authRouters on /api
 app.use('/api', livroRoutes_1.default);
 app.listen(PORTA, () => {
     console.log(`Servidor executando na porta: ${PORTA}`);

@@ -1,24 +1,21 @@
-import express from 'express'
-import dotenv from 'dotenv'
-import authRouters from './routers/livroRoutes'
+import express from 'express';
+import dotenv from 'dotenv';
+import livroRouters from './routers/livroRoutes';
 import { PrismaClient } from '@prisma/client';
 
-dotenv.config()
-const app = express()
-const PORTA = 4000;
+dotenv.config();
+const app = express();
+const PORTA = 5555;
 const prisma = new PrismaClient();
 
-// Middleware
-app.use(express.json())
+app.use(express.json());
 
-// Root route
 app.get('/', (req, res) => {
-    res.send('Teste');
+  res.send('Oie');
 });
 
-// Mounting the authRouters on /api
-app.use('/api', authRouters)
+app.use('/api', livroRouters);
 
 app.listen(PORTA, () => {
-    console.log(`Servidor executando na porta: ${PORTA}`)
-})
+  console.log(`Servidor executando na porta: ${PORTA}`);
+});
