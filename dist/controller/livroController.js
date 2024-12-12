@@ -11,6 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteLivro = exports.updateLivro = exports.createLivro = exports.getLivroById = exports.getLivro = void 0;
 const client_1 = require("@prisma/client");
+const TratamentoErro_1 = require("../utils/TratamentoErro");
 const prisma = new client_1.PrismaClient();
 const getLivro = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -67,13 +68,13 @@ const updateLivro = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 });
 exports.updateLivro = updateLivro;
 const deleteLivro = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { Id } = req.params;
+    const Id = req.params.Id;
     try {
         yield prisma.livro.delete({ where: { Id: Number(Id) } });
         res.status(204).send();
     }
-    catch (error) {
-        res.status(500).json({ error: 'Erro ao deletar o livro' });
+    catch (e) {
+        res.status(500).json({ error: TratamentoErro_1.ErrorRequest });
     }
 });
 exports.deleteLivro = deleteLivro;

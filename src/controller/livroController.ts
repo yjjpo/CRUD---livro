@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { Request, Response } from 'express';
+import { ErrorRequest } from '../utils/TratamentoErro';
 
 const prisma = new PrismaClient();
 
@@ -53,11 +54,11 @@ export const updateLivro = async (req: Request, res: Response) => {
 };
 
 export const deleteLivro = async (req: Request, res: Response) => {
-  const { Id } = req.params;
+  const Id = req.params.Id;
   try {
     await prisma.livro.delete({ where: { Id: Number(Id) } });
     res.status(204).send();
-  } catch (error) {
-    res.status(500).json({ error: 'Erro ao deletar o livro' });
+  } catch (e) {
+    res.status(500).json({ error: ErrorRequest });
   }
 };
