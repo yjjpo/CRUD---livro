@@ -21,7 +21,11 @@ Remove um livro do banco de dados com base no seu ID.
 
 # Tecnologias Utilizadas
 Node.js: Runtime JavaScript para backend.
+
 Express: Framework para construção de APIs.
+
 Prisma: ORM para interagir com o banco de dados.
+
 Dotenv: Gerenciamento de variáveis de ambiente.
+
 Nodemon: Para desenvolvimento com reinicialização automática.
