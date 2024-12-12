@@ -14,9 +14,9 @@ export const getLivro = async (req: Request, res: Response) => {
 };
 
 export const getLivroById = async (req: Request, res: Response) => {
-  const { Id } = req.params;
+  const { id } = req.params;
   try {
-    const livro = await prisma.livro.findUnique({ where: { Id: Number(Id) } });
+    const livro = await prisma.livro.findUnique({ where: { Id: Number(id) } });
     if (livro) {
       res.json(livro);
     } else {
@@ -40,11 +40,11 @@ export const createLivro = async (req: Request, res: Response) => {
 };
 
 export const updateLivro = async (req: Request, res: Response) => {
-  const { Id } = req.params;
+  const { id } = req.params;
   const { Titulo, Autor, AnoPubli, Genero } = req.body;
   try {
     const livroAtualizado = await prisma.livro.update({
-      where: { Id: Number(Id) },
+      where: { Id: Number(id) },
       data: { Titulo, Autor, AnoPubli, Genero },
     });
     res.json(livroAtualizado);
@@ -54,9 +54,9 @@ export const updateLivro = async (req: Request, res: Response) => {
 };
 
 export const deleteLivro = async (req: Request, res: Response) => {
-  const Id = req.params.Id;
+  const { id } = req.params;
   try {
-    await prisma.livro.delete({ where: { Id: Number(Id) } });
+    await prisma.livro.delete({ where: { Id: Number(id) } });
     res.status(204).send();
   } catch (e) {
     res.status(500).json({ error: ErrorRequest });

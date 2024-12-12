@@ -24,9 +24,9 @@ const getLivro = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 });
 exports.getLivro = getLivro;
 const getLivroById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { Id } = req.params;
+    const { id } = req.params;
     try {
-        const livro = yield prisma.livro.findUnique({ where: { Id: Number(Id) } });
+        const livro = yield prisma.livro.findUnique({ where: { Id: Number(id) } });
         if (livro) {
             res.json(livro);
         }
@@ -53,11 +53,11 @@ const createLivro = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 });
 exports.createLivro = createLivro;
 const updateLivro = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { Id } = req.params;
+    const { id } = req.params;
     const { Titulo, Autor, AnoPubli, Genero } = req.body;
     try {
         const livroAtualizado = yield prisma.livro.update({
-            where: { Id: Number(Id) },
+            where: { Id: Number(id) },
             data: { Titulo, Autor, AnoPubli, Genero },
         });
         res.json(livroAtualizado);
@@ -68,9 +68,9 @@ const updateLivro = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 });
 exports.updateLivro = updateLivro;
 const deleteLivro = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const Id = req.params.Id;
+    const { id } = req.params;
     try {
-        yield prisma.livro.delete({ where: { Id: Number(Id) } });
+        yield prisma.livro.delete({ where: { Id: Number(id) } });
         res.status(204).send();
     }
     catch (e) {
