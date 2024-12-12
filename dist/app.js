@@ -9,7 +9,7 @@ const livroRoutes_1 = __importDefault(require("./routers/livroRoutes"));
 const client_1 = require("@prisma/client");
 dotenv_1.default.config();
 const app = (0, express_1.default)();
-const PORTA = 5555;
+const PORTA = 3000;
 const prisma = new client_1.PrismaClient();
 app.use(express_1.default.json());
 app.get('/', (req, res) => {
